@@ -1,4 +1,26 @@
-# Navigate to your desired parent directory
+// Inside App.jsx or a new component
+import React, { useEffect, useState } from 'react';
+
+function App() {
+  const [backendMessage, setBackendMessage] = useState('');
+
+  useEffect(() => {
+    fetch('http://localhost:5000/') // Make sure this matches your backend port
+      .then(response => response.text())
+      .then(data => setBackendMessage(data))
+      .catch(error => console.error('Error fetching from backend:', error));
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Welcome to Movie Recommendation App!</h1>
+      <p>Frontend is up and running.</p>
+      <p>Message from Backend: {backendMessage}</p>
+    </div>
+  );
+}
+
+export default App;# Navigate to your desired parent directory
 # For example, if you want your project in a folder called 'movie-recommendation-app'
 # mkdir movie-recommendation-app
 # cd movie-recommendation-app
